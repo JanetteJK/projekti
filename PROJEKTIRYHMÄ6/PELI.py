@@ -1,1 +1,1 @@
-#moikka kaikki
+#Tänne kaikki funktion kutsunnat

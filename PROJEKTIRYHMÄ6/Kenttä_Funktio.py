@@ -1,0 +1,1 @@
+#Funktio jolla kutsutaan asiakas ja dialogit! <3
