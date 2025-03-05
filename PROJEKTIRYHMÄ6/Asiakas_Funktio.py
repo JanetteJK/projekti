@@ -1,0 +1,1 @@
+def uusi_asiakas():
