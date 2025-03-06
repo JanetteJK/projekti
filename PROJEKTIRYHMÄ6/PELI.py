@@ -10,4 +10,6 @@ connection = mysql.connector.connect(
     password='',
     autocommit=True
     )
+
+
 def main():
