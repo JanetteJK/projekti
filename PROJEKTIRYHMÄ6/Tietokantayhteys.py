@@ -31,5 +31,3 @@ def uusi_asiakas(nimi):
 tulos = get_persons()
 for rivi in tulos:
     print(rivi)
-#result = uusi_asiakas('Pauli Pomottelija')
-#print(result)
