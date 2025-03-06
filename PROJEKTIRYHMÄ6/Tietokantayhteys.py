@@ -8,4 +8,10 @@ def get_db_connection():
         database="tietokannan_nimi"
     )
 
-#muodostaa yhteyden tietokantaan
+def get_persons ():
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT ID, nimi, difficulty FROM person")
+        persons = cursor.fetchall()
+        conn.close()
+        return persons
