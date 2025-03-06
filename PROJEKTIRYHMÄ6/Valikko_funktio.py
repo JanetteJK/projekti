@@ -3,6 +3,7 @@
 
 #tää ei oo ready, juli vaan säätää tääl hihi <333
 
+import mysql.connector
 from Tietokantayhteys import get_db_connection
 import random
 
