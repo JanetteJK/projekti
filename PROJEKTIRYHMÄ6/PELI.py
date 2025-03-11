@@ -1,5 +1,6 @@
-from Rahan_Lisäys import Rahapussi
+from Rahan_Lisäys_Funktio import Rahapussi
 from Tietokantayhteys import get_db_connection
+
 rahapussi = Rahapussi()
 
 
@@ -65,12 +66,11 @@ def aloita_peli():
             yritykset += 1
             order_no += 1
 
-    viimeinen_kysymys = hae_kysymys(person_id, 4)
-    if viimeinen_kysymys:
-        print(f"\n{asiakas_nimi}: {viimeinen_kysymys}")
+    viimeinen_vastaus = hae_kysymys(person_id, 4)
+    if viimeinen_vastaus:
+        print(f"\n{asiakas_nimi}: {viimeinen_vastaus}")
 
-    print("Peli päättyi. Voit yrittää uudelleen!") # Tää alue vaihdetaan sitten tietokantadataan eli pitää keksi miten sinne laitetaan oikean vastauksen dialogit!
-
+    print("Peli päättyi. Voit yrittää uudelleen!")
 
 
 if __name__ == "__main__":
