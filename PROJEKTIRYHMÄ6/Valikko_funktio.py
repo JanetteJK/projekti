@@ -17,14 +17,14 @@ def valikko_kohteet():
 
         # onks tää yhteys oikein?
         # tähän pitää myös vielä lisätä et hakee sen yhden oikeen vastauksen sekaan
-        cursor.execute("SELECT country_id FROM countries ORDER BY RAND() LIMIT 9")
+        cursor.execute("SELECT name FROM country ORDER BY RAND() LIMIT 9")
         countries = cursor.fetchall()
 
         country_ids = [country['country_id'] for country in countries]
 
         format_strings = ','.join(['%s'] * len(country_ids))
         cursor.execute(
-            f"SELECT person_id, answer, correct, country_id FROM answer WHERE country_id IN ({format_strings})",
+            f"SELECT person_id, answer, correct FROM answer WHERE country_id IN ({format_strings})",
             country_ids)
         answers = cursor.fetchall()
 
