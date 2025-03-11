@@ -14,7 +14,6 @@ def valikko_kohteet():
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # Select only the name from country table
         cursor.execute("SELECT name FROM country ORDER BY RAND() LIMIT 9")
         countries = cursor.fetchall()
 
