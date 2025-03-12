@@ -1,9 +1,5 @@
-#tänne valikko joista pelaajan pitää valita oikea vastaus
-#oikea vastaus + 9 randomia countries taulusta
 
-#tää ei oo done viel, juli säätää tääl
-
-#SQL yhteydes joku ongelma
+# HUOM !!!! redoaan tän koko homman niin ignore for now
 
 import mysql.connector
 from Tietokantayhteys import get_db_connection
