@@ -9,9 +9,9 @@ import mysql.connector
 from Tietokantayhteys import get_db_connection
 import random
 
-def valikko_kohteet():
+def valikko_kohteet_oma():
     try:
-        conn = get_db_connection()
+        conn = get_db_connection_oma()
         cursor = conn.cursor(dictionary=True)
 
         cursor.execute("SELECT name FROM country ORDER BY RAND() LIMIT 9")
@@ -48,7 +48,7 @@ def valikko_kohteet():
         print(f"Error connecting to MySQL database: {error}")
         return []
 
-def main():
+def main_oma():
     results = valikko_kohteet()
     print(f"{results}")
 

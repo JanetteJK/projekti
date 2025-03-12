@@ -46,7 +46,7 @@ def aloita_peli():
     while yritykset < max_yritykset:
         kysymys = hae_kysymys(person_id, order_no)
         if not kysymys:
-            print("Peli päättyi.")
+            print("Asiakaspalvelusi oli ala-arvoista ja sait potkut. Voit yrittää uudelleen!")
             return
 
         print(f"\n{asiakas_nimi}: {kysymys}")
@@ -70,7 +70,7 @@ def aloita_peli():
     if viimeinen_vastaus:
         print(f"\n{asiakas_nimi}: {viimeinen_vastaus}")
 
-    print("Peli päättyi. Voit yrittää uudelleen!")
+    print("Olet oikea asiakaspalvelut ammattilainen! Nyt voit lähteä ansaitulle kesälomalle.")
 
 
 if __name__ == "__main__":
