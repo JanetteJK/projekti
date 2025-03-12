@@ -1,4 +1,4 @@
-from Rahan_Lisäys_Funktio import Rahapussi
+from Rahan_Lisäys import Rahapussi
 from Tietokantayhteys import get_db_connection
 
 rahapussi = Rahapussi()
