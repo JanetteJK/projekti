@@ -8,3 +8,4 @@ def bonus_tarkistus():
     if rahat >= 100:
         person_id = 11
         order_no = 1
+    return
