@@ -131,11 +131,13 @@ def aloita_peli_oma():
         asiakas_nimi = hae_asiakkaan_nimi_oma(person_id)
         oikea_vastaus = hae_oikea_vastaus_oma(person_id)
         kysymys = hae_kysymys_oma(person_id, order_no)
-        if person_id >10:
-            print("Olet oikea asiakaspalvelun ammattilainen! Nyt voit lähteä ansaitulle kesälomalle.")
+        if person_id > 10 and rahapussi.raha < 100:
+            print("Olet oikea asiakaspalvelun ammattilainen! Nyt voit lähteä ansaitsemillasi rahoilla kesälomalle.")
             break
-
-        print(f"\n{asiakas_nimi}: {kysymys}")
+        elif person_id > 11:
+            print("tässä hassu bonuslopetus") #tähän joku kiva hassu juttu
+            break
+        print(f"\n{asiakas_nimi}:\n{kysymys}")
         vastaus = input("Kirjoita matkakohde:\n ").strip()
         if vastaus.lower() == oikea_vastaus.lower():
             if yritykset == 0:

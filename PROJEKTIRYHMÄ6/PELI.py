@@ -73,6 +73,8 @@ def aloita_peli():
     print("Olet oikea asiakaspalvelut ammattilainen! Nyt voit lähteä ansaitulle kesälomalle.")
 
 
+
+
 if __name__ == "__main__":
     aloita_peli()
 
