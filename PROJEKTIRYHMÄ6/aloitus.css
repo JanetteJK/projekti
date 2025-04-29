@@ -1,0 +1,28 @@
+div {
+    vertical-align: bottom;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    bottom: 20px;
+
+}
+
+.container {
+    position: absolute;
+    bottom: 250px;
+    text-align: center;
+    left: 0;
+    right: 0;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+
+button {
+    align-content: center;
+    font-size: large;
+    margin: 70px;
+}
