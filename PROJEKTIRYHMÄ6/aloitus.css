@@ -7,6 +7,11 @@ div {
 
 }
 
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
 .container {
     position: absolute;
     bottom: 250px;
@@ -16,13 +21,18 @@ div {
 
 }
 
-h1 {
-    text-align: center;
-}
-
 
 button {
     align-content: center;
     font-size: large;
     margin: 70px;
+}
+
+p {
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1080px;
+    height: 1080px;
+    background-attachment: fixed;
+    margin: auto;
 }
