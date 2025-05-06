@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matkatoimisto Peli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    {% if tila.peli_loppui %}
+        <div class="peli-container">
+            <div class="viesti-laatikko peli-loppui">
+                <h2>Peli päättyi</h2>
+                <p>{{ tila.viesti }}</p>
+                <a href="/uusi_peli" class="uusi-peli-nappi">Aloita uusi peli</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="peli-container">
+
+            <div class="viesti-laatikko">
+                <div class="asiakas-nimi">{{ tila.nimi }}</div>
+                <div class="asiakas-viesti">{{ tila.kysymys }}</div>
+
+                {% if tila.viesti %}
+                    <div class="viesti-ilmoitus {% if tila.onnistui %}onnistui{% else %}epaonnistui{% endif %}">
+                        {{ tila.viesti }}
+                    </div>
+                {% endif %}
+            </div>
+
+
+            <div class="kartta-laatikko">
+                <div id="kartta"></div>
+
+                <div class="vastaus-laatikko">
+                    <form class="vastaus-lomake" action="/vastaa" method="POST">
+                        <label for="vastaus">Kirjoita matkakohde:</label>
+                        <input type="text" id="vastaus" name="vastaus" class="vastaus-kentta" required>
+                        <button type="submit" class="laheta-nappi">Lähetä vastaus</button>
+                    </form>
+                </div>
+
+                <div class="rahapussi">
+                    Rahapussi: {{ tila.rahat }}€
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var vastausKentta = document.getElementById('vastaus');
+            if (vastausKentta) {
+                vastausKentta.focus();
+            }
+
+            var kartta = L.map('kartta').setView([20, 0], 2);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(kartta);
+        });
+    </script>
+</body>
+</html>

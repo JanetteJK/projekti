@@ -1,0 +1,9 @@
+Ohjeet:
+
+1: vaihda oma käyttäjätunnus ja salasana db_functions.py:stä
+
+Flaskin / pelin aloittaminen - terminaaliin seuraavat komennot
+
+1: pip flask install    (lataa flask jos ei ole ladattuna)
+2: cd "\Users\risku\PycharmProjects\projekti\PROJEKTIRYHMÄ6\UUSI PELI\"    (ilmoita tiedosto sijainti)
+3: python app.py         (aloita flask)

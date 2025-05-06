@@ -1,0 +1,254 @@
+
+body {
+    font-family: Arial;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.etusivu-tausta {
+    background-image: url('/static/images/PP.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ff9933;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.otsikko {
+    font-size: 42px;
+    margin-top: 30px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 3px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.nappi {
+    display: block;
+    width: 200px;
+    margin: 40px auto;
+    padding: 15px;
+    background-color: #ff9933;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.nappi:hover {
+    background-color: #ff7700;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.ohje-laatikko {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-image: url('/static/images/Taustakuva.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.peli-container {
+    display: flex;
+    width: 800px;
+    max-width: 95%;
+    height: auto;
+    gap: 10px;
+}
+
+.viesti-laatikko {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.kartta-laatikko {
+    flex: 1;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+#kartta {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.vastaus-laatikko {
+    margin-top: 10px;
+}
+
+.vastaus-lomake {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+}
+
+.vastaus-kentta {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.laheta-nappi {
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.laheta-nappi:hover {
+    background-color: #45a049;
+}
+
+.rahapussi {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 14px;
+}
+
+.asiakas-nimi {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.asiakas-viesti {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    border-left: 3px solid #4CAF50;
+    padding-left: 10px;
+}
+
+.peli-loppui {
+    text-align: center;
+    padding: 15px;
+}
+
+.uusi-peli-nappi {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.viesti-ilmoitus {
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #e8f5e9;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    right: 15px;
+}
+
+.onnistui {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #388e3c;
+}
+
+.epaonnistui {
+    background-color: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #d32f2f;
+}
+
+.raha-info {
+    background-color: #ffffcc;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.asiakas {
+    margin-bottom: 20px;
+}
+
+.kysymys {
+    background-color: #e6f2ff;
+    padding: 15px;
+    border-left: 5px solid blue;
+}
+
+.lomake {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.viesti {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
