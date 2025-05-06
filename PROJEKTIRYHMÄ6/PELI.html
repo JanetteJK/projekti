@@ -11,6 +11,40 @@
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
     <script src="PELI.js" defer></script>
     <title>Paluu Paratiisiin-matkatoimisto</title>
+    <style>
+        main.flex-wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .container {
+            flex: 0.9;
+            min-width: 300px;
+        }
+
+        #kartta {
+            flex: 1;
+            height: 500px;
+            min-width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            order: 2;
+        }
+
+        .game-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            #kartta {
+                order: 1;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -19,12 +53,22 @@
 </header>
 
 <main class="flex-wrap">
-<div id="map"></div>
-
     <div class="container">
         <img class="game-image" src="PPpeli1920.png">
     </div>
+
+    <div id="kartta"></div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = L.map('kartta').setView([65.0, 25.0], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    });
+</script>
 
 </body>
 
