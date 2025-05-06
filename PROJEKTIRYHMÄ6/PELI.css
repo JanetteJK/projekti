@@ -1,3 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+
+
 header {
     background-color: wheat;
     margin: 0;
@@ -6,7 +13,18 @@ header {
 h1 {
     text-align: center;
     color: saddlebrown;
+    margin: 0;
+    padding: 0;
 }
 section {
     ;
+}
+
+.container {
+    width: 100%;
+}
+
+.game-image {
+    width: 900px;
+    height: 900px;
 }
