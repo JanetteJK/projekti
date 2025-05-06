@@ -5,13 +5,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def etusivu():
-    return render_template('aloitus.html')
+    return render_template('index.html')
 
 @app.route('/peli')
 def peli():
     pelitila = game_logic.hae_pelitila()
 
-    return render_template('peli.html', tila=pelitila)
+    return render_template('game.html', tila=pelitila)
 
 @app.route('/vastaa', methods=['POST'])
 def vastaa():

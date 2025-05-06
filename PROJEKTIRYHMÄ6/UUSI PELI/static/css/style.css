@@ -77,7 +77,7 @@ p {
 }
 
 body {
-    background-image: url('/static/images/Taustakuva.png');
+    background-image: url('../images/Taustakuva.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

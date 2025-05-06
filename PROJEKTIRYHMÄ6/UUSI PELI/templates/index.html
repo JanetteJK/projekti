@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matkatoimisto Peli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body.etusivu-tausta {
+            background-image: url("{{ url_for('static', filename='images/PP.png') }}");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="etusivu-tausta">
+    <div class="container">
+        <h1 class="otsikko">Paluu Paratiisiin</h1>
+        <h2>Matkatoimiston asiakaspalvelupeli</h2>
+
+        <div class="ohje-laatikko">
+            <p>Tervetuloa Paluu Paratiisiin -matkatoimistoon! Tehtäväsi on opastaa asiakkaita ja auttaa heitä löytämään sopiva matkakohde.</p>
+            <p>Ansaitset rahaa jokaisesta tyytyväisestä asiakkaasta.</p>
+        </div>
+
+        <a href="/peli" class="nappi">Aloita peli</a>
+    </div>
+</body>
+</html>

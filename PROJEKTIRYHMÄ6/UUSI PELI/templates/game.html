@@ -17,7 +17,7 @@
         </div>
     {% else %}
         <div class="peli-container">
-
+            <!-- Vasemman puolen viesti-laatikko -->
             <div class="viesti-laatikko">
                 <div class="asiakas-nimi">{{ tila.nimi }}</div>
                 <div class="asiakas-viesti">{{ tila.kysymys }}</div>
@@ -29,7 +29,7 @@
                 {% endif %}
             </div>
 
-
+            <!-- Oikean puolen kartta-laatikko -->
             <div class="kartta-laatikko">
                 <div id="kartta"></div>
 
@@ -50,14 +50,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+            // Asetetaan fokus vastaus-kenttään
             var vastausKentta = document.getElementById('vastaus');
             if (vastausKentta) {
                 vastausKentta.focus();
             }
 
+            // Alustetaan Leaflet-kartta
             var kartta = L.map('kartta').setView([20, 0], 2);
 
+            // Lisätään OpenStreetMap-tausta
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
