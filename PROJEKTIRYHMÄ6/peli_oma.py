@@ -170,4 +170,3 @@ def aloita_peli_oma():
 
 if __name__ == "__main__":
     aloita_peli_oma()
-
