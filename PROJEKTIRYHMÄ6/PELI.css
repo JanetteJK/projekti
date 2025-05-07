@@ -28,3 +28,11 @@ section {
     width: 900px;
     height: 900px;
 }
+
+section {
+    padding: 0;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50%;
+}

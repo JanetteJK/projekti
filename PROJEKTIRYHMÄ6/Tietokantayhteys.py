@@ -4,8 +4,8 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         port=3306,
-        user="lauri1",
-        password="Kukkokiekuu1",
+        user="root",
+        password="niittykuja4MAR",
         database="flight_game",
         collation='latin1_swedish_ci',
         autocommit=True

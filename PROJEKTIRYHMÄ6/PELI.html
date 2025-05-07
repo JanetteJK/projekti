@@ -58,18 +58,34 @@
     </div>
 
     <div id="kartta"></div>
+
+
 </main>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const map = L.map('kartta').setView([65.0, 25.0], 5);
+  document.addEventListener('DOMContentLoaded', function() {
+    const map = L.map('kartta').setView([65.0, 25.0], 5);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+  });
+
 </script>
+<div>
+    <p onload="haeKysymys()"></p>
 
+</div>
+<section>
+ <p id="puhe"
+    id="kysymys"
+
+ ></p>
+ <div class="vastaus" </div>
+    <input type="text" id="vastaus" name="vastaus" class="vastausloota" required>
+    <button type="submit" class="lähetä">Anna vastaus</button>
+
+</section>
 </body>
 
 </html>

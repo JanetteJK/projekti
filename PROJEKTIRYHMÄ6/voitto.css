@@ -1,0 +1,43 @@
+body {
+    background-color: wheat;
+}
+
+div {
+    vertical-align: bottom;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    bottom: 20px;
+
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    bottom: 250px;
+    text-align: center;
+    left: 0;
+    right: 0;
+
+}
+
+
+button {
+    align-content: center;
+    font-size: large;
+    margin: 70px;
+    background-color: orange;
+}
+
+p {
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1080px;
+    height: 1080px;
+    background-attachment: fixed;
+    margin: auto;
+}

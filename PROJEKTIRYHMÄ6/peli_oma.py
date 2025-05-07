@@ -1,10 +1,13 @@
 import random
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
+from flask_cors import CORS
+import json
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-
-@app.route('raha')
+@app.route('/raha')
 class Rahapussi_oma:
     def __init__(self):
         self.raha = 0  # Alussa rahaa 0e
@@ -21,7 +24,7 @@ rahapussi = Rahapussi_oma()
 import mysql.connector
 
 
-@app.route('conn')
+@app.route('/conn')
 def get_db_connection_oma():
     return mysql.connector.connect(
         host="localhost",
@@ -32,7 +35,7 @@ def get_db_connection_oma():
         collation='latin1_swedish_ci',
         autocommit=True
     )
-@app.route('get_persons')
+@app.route('/get_persons')
 def get_persons_oma ():
         conn = get_db_connection_oma()
         cursor = conn.cursor()
@@ -40,7 +43,7 @@ def get_persons_oma ():
         persons = cursor.fetchall()
         conn.close()
         return persons
-@app.route('uusi_asiakas')
+@app.route('/uusi_asiakas')
 def uusi_asiakas_oma(nimi):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -56,7 +59,7 @@ for rivi in tulos:
 #result = uusi_asiakas('Pauli Pomottelija')
 #print(result)
 
-@app.route('hae_kysymys')
+@app.route('/hae_kysymys')
 def hae_kysymys_oma(person_id, order_no):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -66,7 +69,7 @@ def hae_kysymys_oma(person_id, order_no):
     conn.close()
     return kysymys[0] if kysymys else None
 
-@app.route('hae_vastaus')
+@app.route('/hae_vastaus')
 def hae_oikea_vastaus_oma(person_id):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -76,15 +79,24 @@ def hae_oikea_vastaus_oma(person_id):
     conn.close()
     return oikea_vastaus[0] if oikea_vastaus else None
 
-@app.route('hae_nimi')
+@app.route('/hae_nimi/<person_id>')
 def hae_asiakkaan_nimi_oma(person_id):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
-    query = "SELECT nimi FROM person WHERE id = %s"
+    query = "SELECT nimi FROM person WHERE id = '{person_id}'"
     cursor.execute(query, (person_id,))
     nimi = cursor.fetchone()
     conn.close()
-    return nimi[0] if nimi else None
+
+    ans = {
+        "nimi":nimi
+    }
+    print(ans)
+    json_ans = json.dumps(ans)
+    response = Response(response=json_ans, status=200, mimetype="application/json")
+    response.headers["Content-Type"] = "charset=utf-8"
+    return ans
+    #return nimi[0] if nimi else None
 
 
 def valikko_kohteet_oma():
@@ -116,7 +128,7 @@ def valikko_kohteet_oma():
     except mysql.connector.Error as error:
         print(f"Error connecting to MySQL database: {error}")
         return []
-@app.route('main')
+@app.route('/main')
 def main_oma():
     results = valikko_kohteet_oma()
     print(f"{results}")
@@ -126,7 +138,7 @@ if __name__ == "__main__":
 
 
 
-@app.route('aloita_peli')
+@app.route('/aloita_peli')
 def aloita_peli_oma():
     person_id = 1
     order_no = 1
@@ -174,5 +186,8 @@ def aloita_peli_oma():
 
 
 
-if __name__ == "__main__":
-    aloita_peli_oma()
+
+
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
