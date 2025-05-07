@@ -47,46 +47,50 @@ def hae_valikko_kohteet(person_id):
 
         oikea_vastaus = hae_oikea_vastaus(person_id)
 
-        # täs hakee random järjestykses ne 9 extraa tietokannast
-        cursor.execute("SELECT name FROM country ORDER BY RAND() LIMIT 9")
-        countries = cursor.fetchall()
+        # Haetaan maan ID tietokannasta oikeaa vastausta varten
+        cursor.execute("SELECT id FROM country WHERE name = %s", (oikea_vastaus,))
+        oikea_vastaus_tulos = cursor.fetchone()
 
-        # varmistetaa et tulee vaan maan nimi näkyvii
-        country_names = [country['name'] for country in countries]
+        # Jos oikea vastaus löydetään tietokannasta
+        if oikea_vastaus_tulos:
+            oikea_vastaus_id = oikea_vastaus_tulos['id']
 
-        # varmistetaa ettei tuu tuplia listoille, se olis kyl funny tho
-        if oikea_vastaus not in country_names:
-            if country_names:
-                country_names.pop()
-            country_names.append(oikea_vastaus)
+            # Hakee 9 random maata pois lukien oikee vastaus
+            cursor.execute(
+                "SELECT id, name FROM country WHERE id != %s ORDER BY RAND() LIMIT 9",
+                (oikea_vastaus_id,)
+            )
+            countries = cursor.fetchall()
 
-        # haetaa vastaustiedot kaikille maille
-        format_strings = ','.join(['%s'] * len(country_names))
-        cursor.execute(
-            f"SELECT country.name AS country_name, person_id, answer, correct FROM answer "
-            f"JOIN country ON answer.country_id = country.id "
-            f"WHERE country.name IN ({format_strings})",
-            country_names)
-        answers = cursor.fetchall()
+            # lisätää oikee vastaus
+            cursor.execute("SELECT id, name FROM country WHERE id = %s", (oikea_vastaus_id,))
+            oikea_maa = cursor.fetchone()
+            if oikea_maa:
+                countries.append(oikea_maa)
 
-        results = []
-        for country_name in country_names:
-            matching_answers = [a for a in answers if a.get('country_name') == country_name]
-            answer_info = matching_answers[0] if matching_answers else {"person_id": None, "answer": None,
-                                                                        "correct": None}
+            random.shuffle(countries)
 
-            results.append({
-                "country_name": country_name,
-                "person_id": answer_info["person_id"],
-                "answer": answer_info["answer"],
-                "correct": answer_info["correct"]
-            })
+            results = []
+            for country in countries:
+                results.append({
+                    "country_name": country['name'],
+                    "person_id": None,
+                    "answer": None,
+                    "correct": None
+                })
 
-        # mix ts up
-        random.shuffle(results)
+            # Päivitetään oikean vastauksen tiedot
+            for result in results:
+                if result["country_name"] == oikea_vastaus:
+                    result["person_id"] = person_id
+                    result["answer"] = oikea_vastaus
+                    result["correct"] = 1
 
-        conn.close()
-        return results
+            conn.close()
+            return results
+        else:
+            print(f"Virhe: Oikeaa vastausta '{oikea_vastaus}' ei löydy tietokannasta.")
+            return []
 
     except mysql.connector.Error as error:
         print(f"Error connecting to MySQL database: {error}")
