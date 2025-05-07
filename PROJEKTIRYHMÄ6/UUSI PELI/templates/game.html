@@ -5,19 +5,98 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/Taustakuva.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        body.havio-tausta {
+            background-image: url("{{ url_for('static', filename='images/PP.häviö.png') }}");
+        }
+
+
+        body.voitto-tausta {
+            background-image: url("{{ url_for('static', filename='images/PP.voitto.png') }}");
+        }
+
+       {
+            border: 2px solid #ff6b6b !important;
+            background-color: #fff0f0;
+        }
+
+         {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            gap: 5px;
+        }
+
+        {
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+        }
+
+         {
+            background-color: #ff6b6b;
+        }
+
+        {
+            background-color: #fff9c4;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-style: italic;
+            border-left: 3px solid #fbc02d;
+            display: none;
+        }
+        {
+            background-color: #e8f5e9;
+            border: 2px solid #4CAF50;
+        }
+
+            background-color: #ffebee;
+            border: 2px solid #ef5350;
+        }
+    </style>
 </head>
-<body>
+<body
+    {% if tila.peli_loppui and not tila.onnistui %}
+        class="havio-tausta"
+    {% elif tila.peli_loppui and tila.onnistui and tila.person_id > 10 %}
+        class="voitto-tausta"
+    {% endif %}
+>
     {% if tila.peli_loppui %}
         <div class="peli-container">
-            <div class="viesti-laatikko peli-loppui">
-                <h2>Peli päättyi</h2>
+            <div class="viesti-laatikko peli-loppui {% if tila.onnistui and tila.person_id > 10 %}voitto-viesti{% else %}{% if not tila.onnistui %}havio-viesti{% endif %}{% endif %}">
+                <h2>
+                    {% if tila.onnistui and tila.person_id > 10 %}
+                        Onneksi olkoon! Läpäisit pelin!
+                    {% elif not tila.onnistui %}
+                        Hävisit pelin
+                    {% else %}
+                        Peli päättyi
+                    {% endif %}
+                </h2>
                 <p>{{ tila.viesti }}</p>
                 <a href="/uusi_peli" class="uusi-peli-nappi">Aloita uusi peli</a>
             </div>
         </div>
     {% else %}
         <div class="peli-container">
-            <!-- Vasemman puolen viesti-laatikko -->
             <div class="viesti-laatikko">
                 <div class="asiakas-nimi">{{ tila.nimi }}</div>
                 <div class="asiakas-viesti">{{ tila.kysymys }}</div>
@@ -29,7 +108,6 @@
                 {% endif %}
             </div>
 
-            <!-- Oikean puolen kartta-laatikko -->
             <div class="kartta-laatikko">
                 <div id="kartta"></div>
 
@@ -48,23 +126,7 @@
         </div>
     {% endif %}
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Asetetaan fokus vastaus-kenttään
-            var vastausKentta = document.getElementById('vastaus');
-            if (vastausKentta) {
-                vastausKentta.focus();
-            }
 
-            // Alustetaan Leaflet-kartta
-            var kartta = L.map('kartta').setView([20, 0], 2);
-
-            // Lisätään OpenStreetMap-tausta
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(kartta);
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>
