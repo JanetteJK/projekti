@@ -39,8 +39,8 @@ async function startGame() {
   try {
     const response = await fetch('http://localhost/aloita_peli');
     const data = await response.json();
-
     console.log(data)
+
     asiakas = data;
     let puhe = document.createElement("li")
     let teksti = document.createTextNode(`${data}`);
@@ -50,3 +50,5 @@ async function startGame() {
     console.error('Error fetching data', error)
   }
 }
+
+startGame()

@@ -1,4 +1,10 @@
 import random
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+
+
+@app.route('raha')
 class Rahapussi_oma:
     def __init__(self):
         self.raha = 0  # Alussa rahaa 0e
@@ -15,7 +21,7 @@ rahapussi = Rahapussi_oma()
 import mysql.connector
 
 
-
+@app.route('conn')
 def get_db_connection_oma():
     return mysql.connector.connect(
         host="localhost",
@@ -26,7 +32,7 @@ def get_db_connection_oma():
         collation='latin1_swedish_ci',
         autocommit=True
     )
-
+@app.route('get_persons')
 def get_persons_oma ():
         conn = get_db_connection_oma()
         cursor = conn.cursor()
@@ -34,7 +40,7 @@ def get_persons_oma ():
         persons = cursor.fetchall()
         conn.close()
         return persons
-
+@app.route('uusi_asiakas')
 def uusi_asiakas_oma(nimi):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -50,7 +56,7 @@ for rivi in tulos:
 #result = uusi_asiakas('Pauli Pomottelija')
 #print(result)
 
-
+@app.route('hae_kysymys')
 def hae_kysymys_oma(person_id, order_no):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -60,7 +66,7 @@ def hae_kysymys_oma(person_id, order_no):
     conn.close()
     return kysymys[0] if kysymys else None
 
-
+@app.route('hae_vastaus')
 def hae_oikea_vastaus_oma(person_id):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -70,7 +76,7 @@ def hae_oikea_vastaus_oma(person_id):
     conn.close()
     return oikea_vastaus[0] if oikea_vastaus else None
 
-
+@app.route('hae_nimi')
 def hae_asiakkaan_nimi_oma(person_id):
     conn = get_db_connection_oma()
     cursor = conn.cursor()
@@ -110,7 +116,7 @@ def valikko_kohteet_oma():
     except mysql.connector.Error as error:
         print(f"Error connecting to MySQL database: {error}")
         return []
-
+@app.route('main')
 def main_oma():
     results = valikko_kohteet_oma()
     print(f"{results}")
@@ -120,7 +126,7 @@ if __name__ == "__main__":
 
 
 
-
+@app.route('aloita_peli')
 def aloita_peli_oma():
     person_id = 1
     order_no = 1
