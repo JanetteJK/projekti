@@ -29,10 +29,6 @@ section {
     height: 900px;
 }
 
-section {
-    padding: 0;
-    text-align: center;
-    flex-wrap: wrap;
-    width: 50%;
-    height: 50%;
+p {
+    text-align: right;
 }

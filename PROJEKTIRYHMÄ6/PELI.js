@@ -2,7 +2,7 @@
 
 async function haeAsiakas() {
   try {
-    const response = await fetch('http://localhost:3000/1');
+    const response = await fetch('http://localhost:3000/hae_nimi/1');
     console.log(response)
     const data = await response.json();
     console.log(data)
@@ -10,20 +10,19 @@ async function haeAsiakas() {
 
     let puhe = document.querySelector("#puhe")
     puhe.innerHTML = data.nimi
+
+
   }
   catch (error){
     console.error('Error fetching data', error)
   }
 }
-
-let asiakas = haeAsiakas()
-
-
-function haeKysymys() {
+haeAsiakas()
+/* async function haeKysymys() {
   try {
-    const response = fetch();
+    const response = fetch('http://localhost:3000/');
     console.log(response)
-    const data = response.json();
+    const data = await response.json();
     console.log(data)
 
     let kys = document.querySelector('#kysymys')
@@ -31,7 +30,9 @@ function haeKysymys() {
   } catch (error) {
     console.error('Error fetching data', error)
   }
-}
+} /*
+
+
 
 /* hae ensin asiakkaan numero (aloitus 1), hae sitten asiakkaan numeron perusteella
 kysymys. tuo inputin vastaus htmlästä ja tarkista onko se oikein. jos ei ole
@@ -41,5 +42,5 @@ peliruutu game overiin.
 
 
 
-haeAsiakas()
-haeKysymys()
+
+
